@@ -117,18 +117,18 @@ const loginUser = asyncHandler(async (req,res) => {
 
     const generateAccessAndRefreshToken = async (userId) =>{
         try {
-            console.log("Fetching user for token generation...");
+            //console.log("Fetching user for token generation...");
             const user = await User.findById(userId)
 
-            console.log("Generating tokens...");
+            //console.log("Generating tokens...");
             const accessToken = user.generateAccessToken()
             const refreshToken = user.generateRefreshToken()
 
-            console.log("Saving refresh token...");
+            //console.log("Saving refresh token...");
             user.refreshToken = refreshToken
             await user.save({validateBeforeSave:false})
 
-            console.log("Tokens generated successfully.")
+            //console.log("Tokens generated successfully.")
             return {accessToken,refreshToken}
         } catch (error) {
             console.error("Error while generating tokens:", error);
@@ -507,4 +507,4 @@ export {registerUser
     updateUserCoverImage,
     getUserChannelProfile,
     getWatchHistory
-}
+}   
